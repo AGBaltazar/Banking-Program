@@ -6,9 +6,8 @@ using namespace std;
 
 class bankAccount {
     public:
-        string accountName;
-        string accountType;
-        double accountBalance, accountInterest;
+        string accountName, accountType;
+        double accountBalance, accountInterest, depositAmount, withdrawAmount;
         int accountNumber;
 
     //Function will get user input and add it to the set variables to later be accessed
@@ -29,6 +28,23 @@ class bankAccount {
         cout << "\nAccount Interest: %" << accountInterest;
         cout << "\n";
     }
+
+    void depositMoney(){
+        cout << "\nAmount being deposited: ", cin >> depositAmount;
+        accountBalance = depositAmount + accountBalance;
+    }
+
+    void withdrawMoney(){
+        cout << "\nAmount being withdrawn: ", cin >> withdrawAmount;
+        if (withdrawAmount <= accountBalance){
+            accountBalance = withdrawAmount - accountBalance;
+        }
+        else{
+            cout << "\nInsufficient Funds\n";
+        }
+        
+    }
+
 };
 
 int main() {
@@ -39,9 +55,11 @@ int main() {
     do
     {
         cout << "\n Please select the following options ";
-        cout << "\n 1: Open Account";
-        cout << "\n 2: View Account";
-        cout << "\n 3: Exit \n\n";
+        cout << "\n      1: Open Account";
+        cout << "\n      2: View Account";
+        cout << "\n      3: Deposit Money";
+        cout << "\n      4: Withdraw Money";
+        cout << "\n      5: Exit \n\n";
 
         cin >> choice;
 
@@ -56,9 +74,17 @@ int main() {
             break;
         
         case '3':
+            bankAcc.depositMoney();
+            break;
+
+        case '4':
+            bankAcc.withdrawMoney();
+            break;
+
+        case '5':
             break;
 
         }
     
-    } while (choice !=2);
+    } while (choice > 5);
 }
