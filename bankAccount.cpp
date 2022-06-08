@@ -7,7 +7,7 @@ using namespace std;
 class bankAccount {
     public:
         string accountName, accountType;
-        double accountBalance, accountInterest, depositAmount, withdrawAmount;
+        double accountBalance, accountInterest, depositAmount, withdrawAmount, updateBalance;
         int accountNumber;
 
     //Function will get user input and add it to the set variables to later be accessed
@@ -45,6 +45,17 @@ class bankAccount {
         
     }
 
+    void interest(){
+        cout << "\nPlease enter your desired Interest amount: ", cin >> accountInterest;
+    }
+
+    void update(){
+        updateBalance = accountBalance * accountInterest;
+        accountBalance += updateBalance;
+
+        cout << "\n You updated balance with interest is " << accountBalance;
+    }   
+
 };
 
 int main() {
@@ -59,7 +70,9 @@ int main() {
         cout << "\n      2: View Account";
         cout << "\n      3: Deposit Money";
         cout << "\n      4: Withdraw Money";
-        cout << "\n      5: Exit \n\n";
+        cout << "\n      5: Edit Interest Rate";
+        cout << "\n      6: Update Balance";
+        cout << "\n      7: Exit \n\n";
 
         cin >> choice;
 
@@ -82,9 +95,17 @@ int main() {
             break;
 
         case '5':
+            bankAcc.interest();
+            break;
+
+        case '6':
+            bankAcc.update();
+            break;
+
+        case '7':
             break;
 
         }
     
-    } while (choice > 5);
+    } while (choice > 7);
 }
